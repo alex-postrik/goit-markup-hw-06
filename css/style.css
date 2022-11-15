@@ -904,7 +904,8 @@ ul {
   display: flex;
   flex-direction: column;
 }
-.form-field:checked .form-icon {
+.form-field:focus-within .form-icon,
+.form-field:hover .form-icon {
   fill: var(--accent-color);
 }
 
@@ -921,7 +922,15 @@ ul {
   padding-bottom: 4px;
 
   color: var(--content-text-color);
+
+  transition: border var(--tronsformation-hover);
 }
+.form-field:focus-within > .form-input,
+.form-field:hover > .form-input {
+  border: 1px solid var(--accent-color);
+  fill: currentColor;
+}
+
 .form-input {
   /* position: relative; */
   display: block;
@@ -946,7 +955,10 @@ ul {
   position: absolute;
   top: 40%;
   left: 12px;
+
+  transition: fill var(--tronsformation-hover);
 }
+
 .form-message {
   height: 120px;
   width: 100%;
@@ -963,33 +975,59 @@ ul {
   color: rgba(117, 117, 117, 0.5);
 }
 
-.form-policy {
-  display: flex;
-  justify-content: center;
-  align-items: baseline;
-
-  margin: 0 auto;
-  padding-top: 20px;
-  padding-bottom: 30px;
+.form-message:hover {
+  border: 1px solid var(--accent-color);
 }
 
-.policy-text {
-  user-select: none;
-  font-style: normal;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: calc(14 / 24);
+.form-policy {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
+  padding-top: 20px;
+  padding-bottom: 30px;
+
+  cursor: pointer;
+}
+.policy-icon-check .unchecked {
+  opacity: 1;
+  transition: var(--tronsformation-hover);
+}
+
+.form-checkbox:checked + .policy-icon-check .unchecked {
+  opacity: 0;
+}
+.policy-icon-check .checked {
+  opacity: 0;
+  transition: var(--tronsformation-hover);
+}
+.form-checkbox:checked + .policy-icon-check .checked {
+  opacity: 1;
+}
+
+.olicy-icon-check {
+  position: absolute;
+}
+.policy-text {
+  padding-left: 7px;
+
+  user-select: none;
+  line-height: calc(14 / 24);
   letter-spacing: 0.03em;
 
   color: var(--content-text-color);
 }
 .policy-link {
+  display: inline-flex;
+  padding-left: 7px;
+
   letter-spacing: 0.03em;
   text-decoration-line: underline;
 
   color: var(--accent-color);
 }
 .modal-btn {
+  display: block;
   margin: 0 auto;
 }
